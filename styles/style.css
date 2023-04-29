@@ -1,0 +1,149 @@
+/*--------------------------------------------------------------------------*/
+
+/* Font */
+
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap');
+
+/*--------------------------------------------------------------------------*/
+
+/* Reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a {
+    color: #F1F1F1;
+    text-decoration: none;
+}
+
+/* -------------------------------------------------------------------------- */
+
+/* Color Pallete */
+
+:root {
+    --main: #b43d3d;
+    --mainTransl: #9720208e;
+    --mainDarker: #5c1010;
+    --white: #F1F1F1;
+    --gray1: #262626;
+    --gray2: #201E1E;
+    --gray3: #161616;
+    --gray4: #75756B;
+    --type: #972020;
+}
+
+/*--------------------------------------------------------------------------*/
+
+/* General */
+
+html {
+    font-size: 62.5%;
+}
+body {
+    font-family: 'Red Hat Display', sans-serif;
+    background-color: var(--gray1);
+    color: var(--white);
+}
+::selection {
+    background-color: var(--mainDarker);
+    color: var(--white);
+}
+::-webkit-scrollbar {
+    width: 5px;
+}  
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: var(--main); 
+}
+
+/*--------------------------------------------------------------------------*/
+
+/* Header */
+
+header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--main);
+}
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    max-width: 1024px;
+    padding: 1rem;
+}
+/* Header Name */
+header .container .logo {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/*--------------------------------------------------------------------------*/
+
+/* Main */
+
+main {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+main .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 1024px;
+    min-width: 270px;
+}
+
+/*--------------------------------------------------------------------------*/
+
+/* ... */
+
+/*--------------------------------------------------------------------------*/
+
+/* Footer */
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+footer .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: monospace;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-shadow: 3px 3px var(--main);
+    font-size: 2rem;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+footer .container .links {
+    display: flex;
+    margin-top: 8px;
+    font-size: 3.2rem;
+}
+footer .container .links a {
+    color: var(--white);
+    padding: 5px;
+}
+
+/*--------------------------------------------------------------------------*/
+
+/* Modals */
+
+/*--------------------------------------------------------------------------*/
+
+/* Responsive */
+
+/*--------------------------------------------------------------------------*/
