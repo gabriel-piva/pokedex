@@ -14,7 +14,7 @@
     box-sizing: border-box;
 }
 a {
-    color: #F1F1F1;
+    color: var(--white);
     text-decoration: none;
 }
 
@@ -23,15 +23,15 @@ a {
 /* Color Pallete */
 
 :root {
-    --main: #b43d3d;
-    --mainTransl: #9720208e;
+    --main: #ca4242;
+    --mainTransl: #97202065;
     --mainDarker: #5c1010;
     --white: #F1F1F1;
     --gray1: #262626;
     --gray2: #201E1E;
     --gray3: #161616;
     --gray4: #75756B;
-    --type: #972020;
+    --type: #ca4242;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -45,6 +45,14 @@ body {
     font-family: 'Red Hat Display', sans-serif;
     background-color: var(--gray1);
     color: var(--white);
+}
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 ::selection {
     background-color: var(--mainDarker);
@@ -66,20 +74,50 @@ header {
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: var(--main);
+    border-top: 6px solid var(--main);
 }
 header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 95%;
+    width: 90%;
     max-width: 1024px;
     padding: 1rem;
+    color: var(--main);
+    text-shadow: 3px 3px 3px var(--gray3);
 }
 /* Header Name */
 header .container .logo {
-    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 2.2rem;
     font-weight: 600;
+}
+header .container .logo img {
+    width: 38px;
+    height: 38px;
+}
+
+/* Header Mobile */
+header .container #btnMobile{
+    display: none;
+}
+header .container nav {
+    display: flex;
+    gap: .5rem;
+}
+header .container nav button{
+    border: none;
+    font-size: 1.6rem;
+    width: 60px;
+    height: 30px;
+    transition: .3s;
+    color: var(--main);
+}
+header .container nav button:hover {
+    background-color: var(--mainTransl);
 }
 
 /*--------------------------------------------------------------------------*/
