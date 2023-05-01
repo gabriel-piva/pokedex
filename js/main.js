@@ -9,6 +9,7 @@ import { getPokemon, typeImages } from './pokemon.js';
 const pokedex = document.querySelector('.pokedex');
 const regionButtons = document.querySelectorAll('header nav button')
 const scrollBtn = document.querySelector('#scrollBtn');
+const mobileBtn = document.querySelector('#btnMobile');
 
 // --------------------------------------------------------------------------
 
@@ -62,9 +63,11 @@ const setRegion = () => {
     }
 }
 const changeRegion = async (e) => {
+    closeMobile();
     if(currentRegion == e.target.dataset.region) return;
     currentRegion = e.target.dataset.region;
     setRegion();
+    pokedex.innerHTML = `<img class="loading" src="images/loading.gif" alt=""></img>`;
     await loadPokedex();
 }
 
@@ -102,6 +105,29 @@ const loadPokedex = async () => {
 
 // -------------------------------------------------------------------------- 
 
+//  Mobile Menu
+
+let btnMobileChanged = false;
+const toggleMobile = () => {
+    document.querySelector('header .container nav').classList.toggle('mobile');
+    btnMobileChanged = !btnMobileChanged;
+    if(btnMobileChanged) {
+        btnMobile.innerHTML = "<i class='bx bx-x'></i>";
+        document.body.style.overflow = 'hidden';
+    } else {
+        btnMobile.innerHTML = "<i class='bx bx-menu'></i>";
+        document.body.style.overflow = 'auto';
+    }
+}
+const closeMobile = () => {
+    document.querySelector('header .container nav').classList.remove('mobile');
+    btnMobileChanged = false;
+    document.body.style.overflow = 'auto';
+    btnMobile.innerHTML = "<i class='bx bx-menu'></i>";
+}
+
+// --------------------------------------------------------------------------
+
 // Scroll to Top
 
 const verifyTop = () => {
@@ -126,5 +152,6 @@ window.onload = loadPokedex;
 regionButtons.forEach(btn => btn.addEventListener('click', (e) => changeRegion(e)));
 window.onscroll = verifyTop;
 scrollBtn.addEventListener('click', scrollTop);
+btnMobile.addEventListener('click', toggleMobile);
 
 // -------------------------------------------------------------------------- 

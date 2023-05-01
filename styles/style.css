@@ -74,6 +74,7 @@ input[type="search"]::-webkit-search-cancel-button {
     background: var(--main); 
 }
 #scrollBtn {
+    display: none;
     position: fixed;
     bottom: 10px;
     right: 8px;
@@ -83,8 +84,9 @@ input[type="search"]::-webkit-search-cancel-button {
     height: 40px;
     font-size: 1.8rem;
     color: var(--white);
+    text-shadow: 2px 2px 3px var(--gray3);
+    box-shadow: 2px 2px 3px var(--gray3);
     z-index: 1000;
-    display: none;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -146,6 +148,27 @@ header .container #btnMobile{
     font-size: 3.6rem;
     color: var(--main);
     z-index: 4000;
+}
+header .container nav.mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 2rem;
+    background-color: var(--gray3);
+    border-top: 6px solid var(--main);
+    z-index: 3000;
+}
+header .container nav.mobile button {
+    font-size: 2rem;
+    padding: 1.4rem;
+    width: auto;
+    height: auto;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -278,6 +301,13 @@ main .container .pokedex .pokemon .types img {
     width: 26%;
 }
 
+/* Loading */
+main .container .pokedex .loading {
+    border-radius: 25px;
+    box-shadow: 3px 3px 3px var(--gray3);
+    width: 25rem;
+}
+
 /*--------------------------------------------------------------------------*/
 
 /* Footer */
@@ -330,6 +360,12 @@ footer .container .links a {
 @media (max-width: 320px) {
     html {
         font-size: 54%;
+    }
+}
+@media (max-height: 512px) {
+    header .container nav.mobile button {
+        font-size: 1.7rem;
+        padding: 0.6rem;
     }
 }
 
