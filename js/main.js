@@ -152,6 +152,6 @@ window.onload = loadPokedex;
 regionButtons.forEach(btn => btn.addEventListener('click', (e) => changeRegion(e)));
 window.onscroll = verifyTop;
 scrollBtn.addEventListener('click', scrollTop);
-btnMobile.addEventListener('click', toggleMobile);
+mobileBtn.addEventListener('click', toggleMobile);
 
 // -------------------------------------------------------------------------- 
