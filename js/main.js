@@ -7,14 +7,16 @@ import { getPokemon, typeImages } from './pokemon.js';
 // HTML Elements
 
 const pokedex = document.querySelector('.pokedex');
+const regionButtons = document.querySelectorAll('header nav button')
+const scrollBtn = document.querySelector('#scrollBtn');
 
 // --------------------------------------------------------------------------
 
-// Initial Region
+// Region
 
-let currentRegion = "kanto";
-let min = 1
+let min = 1;
 let max = 151;
+let currentRegion = "kanto";
 
 const setRegion = () => {
     switch(currentRegion) {
@@ -59,12 +61,27 @@ const setRegion = () => {
             max = 1010;
     }
 }
+const changeRegion = async (e) => {
+    if(currentRegion == e.target.dataset.region) return;
+    currentRegion = e.target.dataset.region;
+    setRegion();
+    await loadPokedex();
+}
 
 // -------------------------------------------------------------------------- 
 
 // Pokedex
 
-const loadPokedex = (pokemonList) => {
+let pokemonList;
+const getPokemonList = async () => {
+    const pokemonList = [];
+    for (let i = min; i <= max; i++) {
+        pokemonList.push(await getPokemon(i))
+    }
+    return pokemonList;
+}
+const loadPokedex = async () => {
+    pokemonList = await getPokemonList();
     pokedex.innerHTML = "";
     pokemonList.forEach(pokemon => {
         pokedex.innerHTML += `
@@ -85,17 +102,29 @@ const loadPokedex = (pokemonList) => {
 
 // -------------------------------------------------------------------------- 
 
-// Test
+// Scroll to Top
 
-let pokemon1 = await getPokemon(252);
-let pokemon2 = await getPokemon(253);
-let pokemon3 = await getPokemon(254);
+const verifyTop = () => {
+    if(window.scrollY > 20) {
+        scrollBtn.style.display = 'block';
+    } else {
+        scrollBtn.style.display = 'none';
+    }
+}
+const scrollTop = () => {
+    window.scroll({
+        top: 0,
+        behavior: "smooth"
+    })
+}
 
-let testList  = [];
-testList.push(pokemon1)
-testList.push(pokemon2)
-testList.push(pokemon3)
+// -------------------------------------------------------------------------- 
 
-loadPokedex(testList);
+// Events
+
+window.onload = loadPokedex;
+regionButtons.forEach(btn => btn.addEventListener('click', (e) => changeRegion(e)));
+window.onscroll = verifyTop;
+scrollBtn.addEventListener('click', scrollTop);
 
 // -------------------------------------------------------------------------- 
