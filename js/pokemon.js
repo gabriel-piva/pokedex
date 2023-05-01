@@ -36,15 +36,26 @@ class Pokemon {
 
 const getPokemon = async (number) => {
     const response = await fetch ("https://pokeapi.co/api/v2/pokemon/" + number);
-    const pokemon = await response.json();
-    console.log(await pokemon);
+    const pokemonJson = await response.json();
+    let pokemon = new Pokemon(
+        await pokemonJson.id,
+        await pokemonJson.name,
+        getImage(await pokemonJson.id),
+        typeList(await pokemonJson.types)
+    );
     return pokemon;
 }
+const getImage = (number) => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${number}.png`;
 
 // --------------------------------------------------------------------------
 
-// Type Color
+// Types
 
+const typeList = (types) => { 
+    const typeArray = []; 
+    types.map(typeItem => typeArray.push(typeItem.type.name)); 
+    return typeArray; 
+}
 const typeColor = (type) => {
     if(type == "water") return "#5090D6";
     if(type == "steel") return "#5A8EA2";
@@ -65,9 +76,14 @@ const typeColor = (type) => {
     if(type == "dark") return "#5A5465";
     if(type == "bug") return "#91C12F";
 }
+const typeImages = (types) => {
+    let typeImages = "";
+    types.forEach(type => typeImages += `<img src='images/types/${type}.png'>`);
+    return typeImages;
+}
 
 // --------------------------------------------------------------------------
 
-export { Pokemon, getPokemon, typeColor };
+export { getPokemon, typeImages };
 
 // --------------------------------------------------------------------------

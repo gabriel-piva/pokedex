@@ -1,16 +1,22 @@
 // -------------------------------------------------------------------------- 
 
-import { getPokemon } from './pokemon.js';
+import { getPokemon, typeImages } from './pokemon.js';
 
 // -------------------------------------------------------------------------- 
 
-let min, max;
+// HTML Elements
 
-// -------------------------------------------------------------------------- 
+const pokedex = document.querySelector('.pokedex');
 
-// Region Min & Max
+// --------------------------------------------------------------------------
 
-const setRegion = (currentRegion) => {
+// Initial Region
+
+let currentRegion = "kanto";
+let min = 1
+let max = 151;
+
+const setRegion = () => {
     switch(currentRegion) {
         case "kanto":
             min = 1;
@@ -53,5 +59,43 @@ const setRegion = (currentRegion) => {
             max = 1010;
     }
 }
+
+// -------------------------------------------------------------------------- 
+
+// Pokedex
+
+const loadPokedex = (pokemonList) => {
+    pokedex.innerHTML = "";
+    pokemonList.forEach(pokemon => {
+        pokedex.innerHTML += `
+            <div class="pokemon">
+                <div class="pokemonId">
+                    <div class="number">${pokemon.id}</div>
+                    <img src="images/pokeicon.png">
+                    <div class="name">${pokemon.name}</div>
+                </div>
+                <img src="${pokemon.imageUrl}" alt="">
+                <div class="types">
+                    ${typeImages(pokemon.types)}
+                </div>
+            </div>
+        `
+    })
+}
+
+// -------------------------------------------------------------------------- 
+
+// Test
+
+let pokemon1 = await getPokemon(252);
+let pokemon2 = await getPokemon(253);
+let pokemon3 = await getPokemon(254);
+
+let testList  = [];
+testList.push(pokemon1)
+testList.push(pokemon2)
+testList.push(pokemon3)
+
+loadPokedex(testList);
 
 // -------------------------------------------------------------------------- 
