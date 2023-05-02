@@ -7,7 +7,7 @@ import { getPokemon, typeImages } from './pokemon.js';
 // HTML Elements
 
 const pokedex = document.querySelector('.pokedex');
-const regionButtons = document.querySelectorAll('header nav button')
+const regionButtons = document.querySelectorAll('header .regions button')
 const scrollBtn = document.querySelector('#scrollBtn');
 const mobileBtn = document.querySelector('#btnMobile');
 
@@ -109,7 +109,7 @@ const loadPokedex = async () => {
 
 let btnMobileChanged = false;
 const toggleMobile = () => {
-    document.querySelector('header .container nav').classList.toggle('mobile');
+    document.querySelector('header .container .regions').classList.toggle('mobile');
     btnMobileChanged = !btnMobileChanged;
     if(btnMobileChanged) {
         btnMobile.innerHTML = "<i class='bx bx-x'></i>";
@@ -120,7 +120,7 @@ const toggleMobile = () => {
     }
 }
 const closeMobile = () => {
-    document.querySelector('header .container nav').classList.remove('mobile');
+    document.querySelector('header .container .regions').classList.remove('mobile');
     btnMobileChanged = false;
     document.body.style.overflow = 'auto';
     btnMobile.innerHTML = "<i class='bx bx-menu'></i>";
