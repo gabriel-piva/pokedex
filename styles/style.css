@@ -344,6 +344,91 @@ footer .container .links a {
 
 /* Modals */
 
+@keyframes fall {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -40px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+.modal.active,
+.modal.active .modalContainer.active {
+    display: flex;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 5000;
+}
+
+/* Container */
+.modal .modalContainer {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    background-color: var(--gray1);
+    box-shadow: 2px 2px 8px black;
+    border-top: 6px solid var(--main);
+    width: 90%;
+    max-width: 380px;
+    min-width: 270px;
+    animation: fall .15s;
+    padding: 2.5rem;
+}
+
+/* Content */
+.modal .modalContainer .modalContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Button Close Modal */
+.modal .modalContainer #closeModalBtn {
+    font-size: 1.8rem;
+    padding: .5rem;
+    background-color: var(--main);
+    color: var(--white);
+    border-radius: 5px;
+    width: 25%;
+    margin-top: 20px;
+}
+
+
+/* Modal Type Filter */
+.modal .modalContainer.modalType .modalContent {
+    font-size: 1.8rem;
+    color: var(--white);
+    text-shadow: 2px 2px 2px var(--gray3);
+}
+.modal .modalContainer.modalType .modalContent .types {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.modal .modalContainer.modalType .modalContent .types button img {
+    user-select: none;
+    width: 7.2rem;
+}
+
 /*--------------------------------------------------------------------------*/
 
 /* Responsive */
