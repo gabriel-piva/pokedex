@@ -31,7 +31,6 @@ a {
     --gray2: #201E1E;
     --gray3: #161616;
     --gray4: #75756B;
-    --type: #ca4242;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -262,7 +261,7 @@ main .container .pokedex .pokemon {
     border-radius: 5px;
     width: 20%;
     min-width: 240px;
-    text-shadow: 2px 2px 2px var(--type);
+    text-shadow: 2px 2px 2px var(--main);
     background-color: var(--gray2);
     box-shadow: 2px 2px 3px var(--gray3);
 }
@@ -426,7 +425,7 @@ footer .container .links a {
 }
 .modal .modalContainer.modalType .modalContent .types button img {
     user-select: none;
-    width: 7.2rem;
+    width: 7rem;
 }
 
 /*--------------------------------------------------------------------------*/

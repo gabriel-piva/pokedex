@@ -68,7 +68,8 @@ const changeRegion = async (e) => {
     currentRegion = e.target.dataset.region;
     setRegion();
     pokedex.innerHTML = `<img class="loading" src="images/loading.gif" alt=""></img>`;
-    await loadPokedex();
+    pokemonList = await getPokemonList(); 
+    loadPokedex();
 }
 
 // -------------------------------------------------------------------------- 
@@ -83,10 +84,13 @@ const getPokemonList = async () => {
     }
     return pokemonList;
 }
-const loadPokedex = async () => {
-    pokemonList = await getPokemonList();
+const loadPokedex = () => {
     pokedex.innerHTML = "";
-    pokemonList.forEach(pokemon => {
+    let targetList = applyFilters(pokemonList);
+    if(targetList.length <= 0){
+        pokedex.innerHTML = `<img class="loading" src="images/noresults.gif" title='no results'></img>`;
+    }
+    targetList.forEach(pokemon => {
         pokedex.innerHTML += `
             <div class="pokemon">
                 <div class="pokemonId">
@@ -105,11 +109,30 @@ const loadPokedex = async () => {
 
 // -------------------------------------------------------------------------- 
 
-// Type Filter
+// Filters
 
-const typeFilter = (e) => {
-    console.log(e.target.dataset.type);
+let typeFilterOn = false;
+let typeSelected = "all";
+
+const applyFilters = () => {
+    if(typeFilterOn) {
+        return pokemonList.filter(pokemon => pokemon.types.includes(typeSelected));
+    }
+    return pokemonList;
+}
+const setTypeFilter = (e) => {
+    if(typeSelected == e.target.dataset.type) {
+        closeModal();
+        return;
+    }
+    typeSelected = e.target.dataset.type;
+    if(typeSelected == "all") {
+        typeFilterOn = false;
+    } else {
+        typeFilterOn = true;
+    }
     closeModal();
+    loadPokedex();
 }
 
 // -------------------------------------------------------------------------- 
@@ -232,17 +255,23 @@ const modalType = () => {
             <button type="button" class="btnType">
                 <img src="images/types/bug.png" data-type="bug">
             </button>
+            <button type="button" class="btnType">
+                <img src="images/types/all.png" data-type="all">
+            </button>
         </div>
     `;
     modalContainer.classList.add('modalType');
-    document.querySelectorAll(".btnType").forEach(btn => btn.addEventListener("click", (e) => typeFilter(e)));
+    document.querySelectorAll(".btnType").forEach(btn => btn.addEventListener("click", (e) => setTypeFilter(e)));
 }
 
 // -------------------------------------------------------------------------- 
 
 // Events
 
-window.onload = loadPokedex;
+window.onload = async () => {
+    pokemonList = await getPokemonList();
+    loadPokedex();
+}
 regionButtons.forEach(btn => btn.addEventListener('click', (e) => changeRegion(e)));
 window.onscroll = verifyTop;
 scrollBtn.addEventListener('click', scrollTop);
