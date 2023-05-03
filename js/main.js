@@ -1,17 +1,46 @@
 // -------------------------------------------------------------------------- 
 
 import { getPokemon, typeImages } from './pokemon.js';
-
-// -------------------------------------------------------------------------- 
-
-// HTML Elements
-
-const pokedex = document.querySelector('.pokedex');
-const regionButtons = document.querySelectorAll('header .regions button')
-const scrollBtn = document.querySelector('#scrollBtn');
-const mobileBtn = document.querySelector('#btnMobile');
+import { closeMobile, toggleMobile, scrollTop, verifyTop } from './utils.js';
 
 // --------------------------------------------------------------------------
+
+// Pokedex
+
+const pokedex = document.querySelector('.pokedex');
+let pokemonList;
+
+const getPokemonList = async () => {
+    const pokemonList = [];
+    for (let i = min; i <= max; i++) {
+        pokemonList.push(await getPokemon(i))
+    }
+    return pokemonList;
+}
+const loadPokedex = () => {
+    pokedex.innerHTML = "";
+    let targetList = applyFilters(pokemonList);
+    if(targetList.length <= 0){
+        pokedex.innerHTML = `<img class="loading" src="images/noresults.gif" title='no results'></img>`;
+    }
+    targetList.forEach(pokemon => {
+        pokedex.innerHTML += `
+            <div class="pokemon">
+                <div class="pokemonId">
+                    <div class="number">${pokemon.id}</div>
+                    <img src="images/pokeicon.png">
+                    <div class="name">${pokemon.name}</div>
+                </div>
+                <img src="${pokemon.imageUrl}" alt="">
+                <div class="types">
+                    ${typeImages(pokemon.types)}
+                </div>
+            </div>
+        `
+    })
+}
+
+// -------------------------------------------------------------------------- 
 
 // Region
 
@@ -74,52 +103,11 @@ const changeRegion = async (e) => {
 
 // -------------------------------------------------------------------------- 
 
-// Pokedex
-
-let pokemonList;
-const getPokemonList = async () => {
-    const pokemonList = [];
-    for (let i = min; i <= max; i++) {
-        pokemonList.push(await getPokemon(i))
-    }
-    return pokemonList;
-}
-const loadPokedex = () => {
-    pokedex.innerHTML = "";
-    let targetList = applyFilters(pokemonList);
-    if(targetList.length <= 0){
-        pokedex.innerHTML = `<img class="loading" src="images/noresults.gif" title='no results'></img>`;
-    }
-    targetList.forEach(pokemon => {
-        pokedex.innerHTML += `
-            <div class="pokemon">
-                <div class="pokemonId">
-                    <div class="number">${pokemon.id}</div>
-                    <img src="images/pokeicon.png">
-                    <div class="name">${pokemon.name}</div>
-                </div>
-                <img src="${pokemon.imageUrl}" alt="">
-                <div class="types">
-                    ${typeImages(pokemon.types)}
-                </div>
-            </div>
-        `
-    })
-}
-
-// -------------------------------------------------------------------------- 
-
 // Filters
 
+// Type Filter
 let typeFilterOn = false;
 let typeSelected = "all";
-
-const applyFilters = () => {
-    if(typeFilterOn) {
-        return pokemonList.filter(pokemon => pokemon.types.includes(typeSelected));
-    }
-    return pokemonList;
-}
 const setTypeFilter = (e) => {
     if(typeSelected == e.target.dataset.type) {
         closeModal();
@@ -135,45 +123,14 @@ const setTypeFilter = (e) => {
     loadPokedex();
 }
 
-// -------------------------------------------------------------------------- 
+// Search Filter
+// TODO
 
-//  Mobile Menu
-
-let btnMobileChanged = false;
-const toggleMobile = () => {
-    document.querySelector('header .container .regions').classList.toggle('mobile');
-    btnMobileChanged = !btnMobileChanged;
-    if(btnMobileChanged) {
-        btnMobile.innerHTML = "<i class='bx bx-x'></i>";
-        document.body.style.overflow = 'hidden';
-    } else {
-        btnMobile.innerHTML = "<i class='bx bx-menu'></i>";
-        document.body.style.overflow = 'auto';
+const applyFilters = () => {
+    if(typeFilterOn) {
+        return pokemonList.filter(pokemon => pokemon.types.includes(typeSelected));
     }
-}
-const closeMobile = () => {
-    document.querySelector('header .container .regions').classList.remove('mobile');
-    btnMobileChanged = false;
-    document.body.style.overflow = 'auto';
-    btnMobile.innerHTML = "<i class='bx bx-menu'></i>";
-}
-
-// --------------------------------------------------------------------------
-
-// Scroll to Top
-
-const verifyTop = () => {
-    if(window.scrollY > 20) {
-        scrollBtn.style.display = 'block';
-    } else {
-        scrollBtn.style.display = 'none';
-    }
-}
-const scrollTop = () => {
-    window.scroll({
-        top: 0,
-        behavior: "smooth"
-    })
+    return pokemonList;
 }
 
 // -------------------------------------------------------------------------- 
@@ -194,12 +151,10 @@ const closeModal = () => {
     modalContainer.classList.remove('modalType');
     modalContent.innerHTML = '';
 }
-
-// Modal Type Filter
 const modalType = () => {
     openModal();
     modalContent.innerHTML = `
-        <span>Select a type:</span>
+        <span>Select a Type</span>
         <div class="types">
             <button type="button" class="btnType">
                 <img src="images/types/water.png" data-type="water">
@@ -272,10 +227,10 @@ window.onload = async () => {
     pokemonList = await getPokemonList();
     loadPokedex();
 }
-regionButtons.forEach(btn => btn.addEventListener('click', (e) => changeRegion(e)));
 window.onscroll = verifyTop;
-scrollBtn.addEventListener('click', scrollTop);
-mobileBtn.addEventListener('click', toggleMobile);
+document.querySelector('#btnScroll').addEventListener('click', scrollTop);
+document.querySelectorAll('header .regions button').forEach(btn => btn.addEventListener('click', (e) => changeRegion(e)));
+document.querySelector('#btnMobile').addEventListener('click', toggleMobile);
 document.querySelector('#filterBtn').addEventListener('click', modalType);
 document.querySelector("#closeModalBtn").addEventListener('click', closeModal);
 document.querySelector('.modal').addEventListener('click', (e) => {
