@@ -204,10 +204,6 @@ document.querySelectorAll('header .regions button').forEach(btn => btn.addEventL
 document.querySelector('#btnMobile').addEventListener('click', toggleMobile);
 document.querySelector('#filterBtn').addEventListener('click', modalType);
 document.querySelector("#closeModalBtn").addEventListener('click', closeModal);
-document.querySelector('.modal').addEventListener('click', (e) => {
-    if(e.target == document.querySelector('.modal')) {
-        closeModal() 
-    }
-});
+modal.addEventListener('click', (e) => e.target == modal && closeModal());
 
 // -------------------------------------------------------------------------- 
