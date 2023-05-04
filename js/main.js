@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------- 
 
-import { getPokemon, typeImages } from './pokemon.js';
+import { getPokemon } from './pokemon.js';
 import { closeMobile, toggleMobile, scrollTop, verifyTop } from './utils.js';
 
 // --------------------------------------------------------------------------
@@ -17,7 +17,7 @@ const getPokemonList = async () => {
     }
     return pokemonList;
 }
-const loadPokedex = () => {
+const showPokedex = () => {
     pokedex.innerHTML = "";
     let targetList = applyFilters(pokemonList);
     if(targetList.length <= 0){
@@ -31,65 +31,43 @@ const loadPokedex = () => {
                     <img src="images/pokeicon.png">
                     <div class="name">${pokemon.name}</div>
                 </div>
-                <img src="${pokemon.imageUrl}" alt="">
+                <img src="${pokemon.image}" alt="">
                 <div class="types">
-                    ${typeImages(pokemon.types)}
+                    ${pokemon.getTypeImages()}
                 </div>
             </div>
         `
     })
 }
+const loadPokedex = async () => {
+    pokemonList = await getPokemonList();
+    showPokedex();
+}
 
 // -------------------------------------------------------------------------- 
 
-// Region
+// Regions
 
+const regions = {
+    kanto:  { min: 1, max: 151 },
+    johto:  { min: 152, max: 251 },
+    hoenn:  { min: 252, max: 386 },
+    sinnoh: { min: 387, max: 494 },
+    unova:  { min: 495, max: 649 },
+    kalos:  { min: 650, max: 721 },
+    alola:  { min: 722, max: 809 },
+    galar:  { min: 810, max: 905 },
+    paldea: { min: 906, max: 1010 }
+};
+
+let currentRegion = "kanto";
 let min = 1;
 let max = 151;
-let currentRegion = "kanto";
 
 const setRegion = () => {
-    switch(currentRegion) {
-        case "kanto":
-            min = 1;
-            max = 151;
-            break;
-        case "johto":
-            min = 152;
-            max = 251;
-            break;
-        case "hoenn":
-            min = 252;
-            max = 386;
-            break;
-        case "sinnoh":
-            min = 387;
-            max = 494;
-            break;
-        case "unova":
-            min = 495;
-            max = 649;
-            break;
-        case "kalos":
-            min = 650;
-            max = 721;
-            break;
-        case "alola":
-            min = 722;
-            max = 809;
-            break;
-        case "galar":
-            min = 810;
-            max = 905;
-            break;
-        case "paldea":
-            min = 906;
-            max = 1010;
-            break;
-        default:
-            min = 1;
-            max = 1010;
-    }
+    const region = regions[currentRegion] || regions["kanto"];
+    min = region.min;
+    max = region.max;
 }
 const changeRegion = async (e) => {
     closeMobile();
@@ -98,7 +76,7 @@ const changeRegion = async (e) => {
     setRegion();
     pokedex.innerHTML = `<img class="loading" src="images/loading.gif" alt=""></img>`;
     pokemonList = await getPokemonList(); 
-    loadPokedex();
+    showPokedex();
 }
 
 // -------------------------------------------------------------------------- 
@@ -114,13 +92,9 @@ const setTypeFilter = (e) => {
         return;
     }
     typeSelected = e.target.dataset.type;
-    if(typeSelected == "all") {
-        typeFilterOn = false;
-    } else {
-        typeFilterOn = true;
-    }
+    typeFilterOn = typeSelected === "all" ? false : true;
     closeModal();
-    loadPokedex();
+    showPokedex();
 }
 
 // Search Filter
@@ -128,7 +102,7 @@ const setTypeFilter = (e) => {
 
 const applyFilters = () => {
     if(typeFilterOn) {
-        return pokemonList.filter(pokemon => pokemon.types.includes(typeSelected));
+        return pokemonList.filter(pokemon => pokemon.getTypeList().includes(typeSelected));
     }
     return pokemonList;
 }
@@ -223,10 +197,7 @@ const modalType = () => {
 
 // Events
 
-window.onload = async () => {
-    pokemonList = await getPokemonList();
-    loadPokedex();
-}
+window.onload = loadPokedex;
 window.onscroll = verifyTop;
 document.querySelector('#btnScroll').addEventListener('click', scrollTop);
 document.querySelectorAll('header .regions button').forEach(btn => btn.addEventListener('click', (e) => changeRegion(e)));
