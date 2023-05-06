@@ -229,8 +229,10 @@ const modalPokemon = async (e) => {
             </div>
         </div>
         <div class="stats">
-            Pokemon Stats
-            TODO
+            <div class="title">
+                Stats
+            </div>
+            ${pokemon.getStatusBars()}
         </div>
     `;
     modalContainer.classList.add('modalPokemon');

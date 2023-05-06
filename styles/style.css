@@ -67,7 +67,7 @@ input[type="search"]::-webkit-search-cancel-button {
     color: var(--white);
 }
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 4px;
 }  
 ::-webkit-scrollbar-thumb {
     background: var(--main); 
@@ -410,6 +410,7 @@ footer .container .links a {
     color: var(--white);
     border-radius: 5px;
     width: 25%;
+    max-width: 80px;
     margin-top: 20px;
 }
 
@@ -436,11 +437,14 @@ footer .container .links a {
 
 /* Modal Pokemonn */
 .modal .modalContainer.modalPokemon {
-    max-width: 548px;
+    max-width: 600px;
+    padding: 1.2rem;
 }
 .modal .modalContainer.modalPokemon .modalContent {
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
+    gap: .5rem;
+    overflow-x: hidden;
 }
 .modal .modalContainer.modalPokemon .modalContent .sprite,
 .modal .modalContainer.modalPokemon .modalContent .stats {
@@ -449,8 +453,8 @@ footer .container .links a {
     justify-content: center;
     align-items: center;
     text-transform: capitalize;
-    min-width: 200px;
-    width: 48%;
+    min-width: 220px;
+    width: 49%;
 }
 /* Pokemon Sprite */
 .modal .modalContainer.modalPokemon .modalContent .sprite {
@@ -469,7 +473,6 @@ footer .container .links a {
 .modal .modalContainer.modalPokemon .modalContent .sprite img {
     max-width: 230px;
     user-select: none;
-    margin: 3px 0;
 }
 .modal .modalContainer.modalPokemon .modalContent .sprite .types {
     display: flex;
@@ -481,7 +484,44 @@ footer .container .links a {
     width: 27%;
 }
 /* Pokemon Stats */
-/* TODO */
+.modal .modalContainer.modalPokemon .modalContent .stats .title {
+    font-size: 2rem;
+    text-shadow: 2px 2px 2px var(--main);
+    margin: 10px 0;
+}
+.modal .modalContainer.modalPokemon .modalContent .stats .stat {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: .5rem;
+    width: 100%;
+    margin: 4px 0;
+}
+.modal .modalContainer.modalPokemon .modalContent .stats .stat .label {
+    font-weight: 600;
+    font-size: 1.3rem;
+    text-shadow: 2px 2px 2px var(--gray3);
+    width: 60px;
+}
+.modal .modalContainer.modalPokemon .modalContent .stats .stat .barMax {
+    height: 15px;
+    border-radius: 2px;
+    background-color: var(--gray3);
+    width: 50%;
+}
+.modal .modalContainer.modalPokemon .modalContent .stats .stat .barMax .barValue {
+    width: 0%;
+    height: 15px;
+    border-radius: 2px;
+    background-color: var(--main);
+}
+.modal .modalContainer.modalPokemon .modalContent .stats .stat .value {
+    width: 20px;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--main);
+    text-shadow: 2px 2px 2px var(--gray3);
+}
 
 /*--------------------------------------------------------------------------*/
 
@@ -504,6 +544,14 @@ footer .container .links a {
     header .container .regions.mobile button {
         font-size: 1.7rem;
         padding: 0.6rem;
+    }
+}
+@media (max-height: 560px) {
+    html {
+        font-size: 50%;
+    }
+    .modal .modalContainer.modalPokemon .modalContent .sprite img {
+        max-width: 180px;
     }
 }
 
