@@ -261,9 +261,15 @@ main .container .pokedex .pokemon {
     border-radius: 5px;
     width: 20%;
     min-width: 240px;
-    text-shadow: 2px 2px 2px var(--main);
+    text-shadow: 2px 2px 2px var(--gray3);
     background-color: var(--gray2);
     box-shadow: 2px 2px 3px var(--gray3);
+    cursor: pointer;
+}
+main .container .pokedex .pokemon:hover {
+    text-shadow: 3px 3px 2px var(--main);
+    scale: 1.02;
+    transition: all .3s;
 }
 main .container .pokedex .pokemon .pokemonId {
     display: flex;
@@ -391,7 +397,6 @@ footer .container .links a {
 /* Content */
 .modal .modalContainer .modalContent {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -411,6 +416,7 @@ footer .container .links a {
 
 /* Modal Type Filter */
 .modal .modalContainer.modalType .modalContent {
+    flex-direction: column;
     font-size: 1.8rem;
     color: var(--white);
     text-shadow: 2px 2px 2px var(--gray3);
@@ -427,6 +433,55 @@ footer .container .links a {
     user-select: none;
     width: 7rem;
 }
+
+/* Modal Pokemonn */
+.modal .modalContainer.modalPokemon {
+    max-width: 548px;
+}
+.modal .modalContainer.modalPokemon .modalContent {
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.modal .modalContainer.modalPokemon .modalContent .sprite,
+.modal .modalContainer.modalPokemon .modalContent .stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+    min-width: 200px;
+    width: 48%;
+}
+/* Pokemon Sprite */
+.modal .modalContainer.modalPokemon .modalContent .sprite {
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 2px var(--gray3);
+}
+.modal .modalContainer.modalPokemon .modalContent .sprite .pokemonId {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 2rem;
+}
+.modal .modalContainer.modalPokemon .modalContent .sprite .pokemonId img {
+    width: 1.8rem;
+}
+.modal .modalContainer.modalPokemon .modalContent .sprite img {
+    max-width: 230px;
+    user-select: none;
+    margin: 3px 0;
+}
+.modal .modalContainer.modalPokemon .modalContent .sprite .types {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.modal .modalContainer.modalPokemon .modalContent .sprite .types img {
+    width: 27%;
+}
+/* Pokemon Stats */
+/* TODO */
 
 /*--------------------------------------------------------------------------*/
 

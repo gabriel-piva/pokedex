@@ -25,7 +25,7 @@ const showPokedex = () => {
     }
     targetList.forEach(pokemon => {
         pokedex.innerHTML += `
-            <div class="pokemon">
+            <div class="pokemon" data-index="${pokemon.id}">
                 <div class="pokemonId">
                     <div class="number">${pokemon.id}</div>
                     <img src="images/pokeicon.png">
@@ -38,6 +38,7 @@ const showPokedex = () => {
             </div>
         `
     })
+    document.querySelectorAll(".pokemon").forEach(pokemon => pokemon.addEventListener('click', (e) => modalPokemon(e)));
 }
 const loadPokedex = async () => {
     pokemonList = await getPokemonList();
@@ -140,6 +141,7 @@ const closeModal = () => {
     modal.classList.remove('active');
     modalContainer.classList.remove('active');
     modalContainer.classList.remove('modalType');
+    modalContainer.classList.remove('modalPokemon');
     modalContent.innerHTML = '';
 }
 const modalType = () => {
@@ -208,6 +210,30 @@ const modalType = () => {
     `;
     modalContainer.classList.add('modalType');
     document.querySelectorAll(".btnType").forEach(btn => btn.addEventListener("click", (e) => handleTypeChange(e)));
+}
+const modalPokemon = async (e) => {
+    const pokemonEl = e.target.closest('.pokemon');
+    if(!pokemonEl) return;
+    const pokemon = await getPokemon(pokemonEl.dataset.index);
+    openModal();
+    modalContent.innerHTML = `
+        <div class="sprite">
+            <div class="pokemonId">
+                <div class="number">${pokemon.id}</div>
+                <img src="images/pokeicon.png">
+                <div class="name">${pokemon.name}</div>
+            </div>
+            <img src="${pokemon.image}" alt="">
+            <div class="types">
+                ${pokemon.getTypeImages()}
+            </div>
+        </div>
+        <div class="stats">
+            Pokemon Stats
+            TODO
+        </div>
+    `;
+    modalContainer.classList.add('modalPokemon');
 }
 
 // -------------------------------------------------------------------------- 
