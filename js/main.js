@@ -88,7 +88,7 @@ const changeRegion = async (e) => {
 let typeFilterOn = false;
 let typeSelected = "all";
 const typeFilter = (list) => list.filter(pokemon => pokemon.getTypeList().includes(typeSelected));
-const setTypeFilter = (e) => {
+const handleTypeChange = (e) => {
     if(typeSelected == e.target.dataset.type) {
         closeModal();
         return;
@@ -207,7 +207,7 @@ const modalType = () => {
         </div>
     `;
     modalContainer.classList.add('modalType');
-    document.querySelectorAll(".btnType").forEach(btn => btn.addEventListener("click", (e) => setTypeFilter(e)));
+    document.querySelectorAll(".btnType").forEach(btn => btn.addEventListener("click", (e) => handleTypeChange(e)));
 }
 
 // -------------------------------------------------------------------------- 
@@ -219,7 +219,7 @@ window.onscroll = verifyTop;
 document.querySelector('#btnScroll').addEventListener('click', scrollTop);
 document.querySelectorAll('header .regions button').forEach(btn => btn.addEventListener('click', (e) => changeRegion(e)));
 document.querySelector('#btnMobile').addEventListener('click', toggleMobile);
-document.querySelector('#filterBtn').addEventListener('click', modalType);
+document.querySelector('#typeBtn').addEventListener('click', modalType);
 document.querySelector('#searchInput').addEventListener('input', handleSearch);
 document.querySelector("#closeModalBtn").addEventListener('click', closeModal);
 modal.addEventListener('click', (e) => e.target == modal && closeModal());
