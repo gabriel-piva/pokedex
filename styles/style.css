@@ -267,7 +267,7 @@ main .container .pokedex .pokemon {
     cursor: pointer;
 }
 main .container .pokedex .pokemon:hover {
-    text-shadow: 3px 3px 2px var(--main);
+    text-shadow: 2px 2px 2px var(--main);
     scale: 1.02;
     transition: all .3s;
 }
@@ -414,7 +414,6 @@ footer .container .links a {
     margin-top: 20px;
 }
 
-
 /* Modal Type Filter */
 .modal .modalContainer.modalType .modalContent {
     flex-direction: column;
@@ -465,13 +464,13 @@ footer .container .links a {
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 2rem;
+    font-size: 1.8rem;
 }
 .modal .modalContainer.modalPokemon .modalContent .sprite .pokemonId img {
-    width: 1.8rem;
+    width: 1.6rem;
 }
 .modal .modalContainer.modalPokemon .modalContent .sprite img {
-    max-width: 230px;
+    max-width: 180px;
     user-select: none;
 }
 .modal .modalContainer.modalPokemon .modalContent .sprite .types {
@@ -479,13 +478,14 @@ footer .container .links a {
     justify-content: center;
     align-items: center;
     gap: 5px;
+    width: 100%;
 }
 .modal .modalContainer.modalPokemon .modalContent .sprite .types img {
-    width: 27%;
+    width: 20%;
 }
 /* Pokemon Stats */
 .modal .modalContainer.modalPokemon .modalContent .stats .title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-shadow: 2px 2px 2px var(--main);
     margin: 10px 0;
 }
@@ -551,7 +551,7 @@ footer .container .links a {
         font-size: 50%;
     }
     .modal .modalContainer.modalPokemon .modalContent .sprite img {
-        max-width: 180px;
+        max-width: 130px;
     }
 }
 
