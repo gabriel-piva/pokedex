@@ -445,7 +445,7 @@ footer .container .links a {
     gap: .5rem;
     overflow-x: hidden;
 }
-.modal .modalContainer.modalPokemon .modalContent .sprite,
+.modal .modalContainer.modalPokemon .modalContent .pokemon,
 .modal .modalContainer.modalPokemon .modalContent .stats {
     display: flex;
     flex-direction: column;
@@ -456,31 +456,31 @@ footer .container .links a {
     width: 49%;
 }
 /* Pokemon Sprite */
-.modal .modalContainer.modalPokemon .modalContent .sprite {
+.modal .modalContainer.modalPokemon .modalContent .pokemon {
     font-size: 1.8rem;
     text-shadow: 2px 2px 2px var(--gray3);
 }
-.modal .modalContainer.modalPokemon .modalContent .sprite .pokemonId {
+.modal .modalContainer.modalPokemon .modalContent .pokemon .pokemonId {
     display: flex;
     align-items: center;
     gap: 5px;
     font-size: 1.8rem;
 }
-.modal .modalContainer.modalPokemon .modalContent .sprite .pokemonId img {
+.modal .modalContainer.modalPokemon .modalContent .pokemon .pokemonId img {
     width: 1.6rem;
 }
-.modal .modalContainer.modalPokemon .modalContent .sprite img {
+.modal .modalContainer.modalPokemon .modalContent .pokemon img {
     max-width: 180px;
     user-select: none;
 }
-.modal .modalContainer.modalPokemon .modalContent .sprite .types {
+.modal .modalContainer.modalPokemon .modalContent .pokemon .types {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 5px;
     width: 100%;
 }
-.modal .modalContainer.modalPokemon .modalContent .sprite .types img {
+.modal .modalContainer.modalPokemon .modalContent .pokemon .types img {
     width: 20%;
 }
 /* Pokemon Stats */
@@ -550,7 +550,7 @@ footer .container .links a {
     html {
         font-size: 50%;
     }
-    .modal .modalContainer.modalPokemon .modalContent .sprite img {
+    .modal .modalContainer.modalPokemon .modalContent .pokemon img {
         max-width: 130px;
     }
 }

@@ -45,6 +45,21 @@ class Pokemon {
         this.getTypeList().forEach(type => typeImages += `<img src='images/types/${type}.png'>`);
         return typeImages;
     }
+    toHTML() {
+        return `
+            <div class="pokemon" data-index="${this.id}">
+                <div class="pokemonId">
+                    <div class="number">${this.id}</div>
+                    <img src="images/pokeicon.png">
+                    <div class="name">${this.name}</div>
+                </div>
+                <img src="${this.image}" alt="">
+                <div class="types">
+                    ${this.getTypeImages()}
+                </div>
+            </div>
+        `;
+    }
     getStatsValues() {
         return {
             hp: this.stats[0].base_stat,

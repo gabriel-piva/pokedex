@@ -23,22 +23,8 @@ const showPokedex = () => {
     if(targetList.length <= 0){
         pokedex.innerHTML = `<img class="loading" src="images/noresults.gif" title='no results'></img>`;
     }
-    targetList.forEach(pokemon => {
-        pokedex.innerHTML += `
-            <div class="pokemon" data-index="${pokemon.id}">
-                <div class="pokemonId">
-                    <div class="number">${pokemon.id}</div>
-                    <img src="images/pokeicon.png">
-                    <div class="name">${pokemon.name}</div>
-                </div>
-                <img src="${pokemon.image}" alt="">
-                <div class="types">
-                    ${pokemon.getTypeImages()}
-                </div>
-            </div>
-        `
-    })
-    document.querySelectorAll(".pokemon").forEach(pokemon => pokemon.addEventListener('click', (e) => modalPokemon(e)));
+    targetList.forEach(pokemon => pokedex.innerHTML += pokemon.toHTML());
+    document.querySelectorAll(".pokedex .pokemon").forEach(pokemon => pokemon.addEventListener('click', (e) => modalPokemon(e)));
 }
 const loadPokedex = async () => {
     pokemonList = await getPokemonList();
@@ -216,18 +202,8 @@ const modalPokemon = async (e) => {
     if(!pokemonEl) return;
     const pokemon = await getPokemon(pokemonEl.dataset.index);
     openModal();
-    modalContent.innerHTML = `
-        <div class="sprite">
-            <div class="pokemonId">
-                <div class="number">${pokemon.id}</div>
-                <img src="images/pokeicon.png">
-                <div class="name">${pokemon.name}</div>
-            </div>
-            <img src="${pokemon.image}" alt="">
-            <div class="types">
-                ${pokemon.getTypeImages()}
-            </div>
-        </div>
+    modalContent.innerHTML = pokemon.toHTML();
+    modalContent.innerHTML += `
         <div class="stats">
             <div class="title">
                 Stats
