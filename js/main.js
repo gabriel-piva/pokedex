@@ -19,7 +19,7 @@ const getPokemonList = async () => {
 }
 const showPokedex = () => {
     pokedex.innerHTML = "";
-    let targetList = applyFilters(pokemonList);
+    let targetList = applyFilters();
     if(targetList.length <= 0){
         pokedex.innerHTML = `<img class="loading" src="images/noresults.gif" title='no results'></img>`;
     }
@@ -66,6 +66,7 @@ let max = 151;
 
 const setRegion = () => {
     const region = regions[currentRegion] || regions["kanto"];
+    document.querySelector("#searchInput").placeholder = `Search in ${currentRegion.charAt(0).toUpperCase() + currentRegion.slice(1)}`;
     min = region.min;
     max = region.max;
 }
@@ -86,6 +87,7 @@ const changeRegion = async (e) => {
 // Type Filter
 let typeFilterOn = false;
 let typeSelected = "all";
+const typeFilter = (list) => list.filter(pokemon => pokemon.getTypeList().includes(typeSelected));
 const setTypeFilter = (e) => {
     if(typeSelected == e.target.dataset.type) {
         closeModal();
@@ -98,13 +100,28 @@ const setTypeFilter = (e) => {
 }
 
 // Search Filter
-// TODO
+let searchFilterOn = false;
+let timeoutId;
+const searchFilter = (list) => {
+    const search = document.querySelector("#searchInput").value.trim().toLowerCase();
+    return list.filter(pokemon => pokemon.name.toLowerCase().includes(search));
+}
+const handleSearch = () => {
+    searchFilterOn = document.querySelector("#searchInput").value.trim().length > 0;
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => showPokedex(), 220);
+}
 
+// Apply all filters
 const applyFilters = () => {
+    let targetList = pokemonList;
     if(typeFilterOn) {
-        return pokemonList.filter(pokemon => pokemon.getTypeList().includes(typeSelected));
+        targetList = typeFilter(targetList);
     }
-    return pokemonList;
+    if(searchFilterOn) {
+        targetList = searchFilter(targetList);
+    }
+    return targetList;
 }
 
 // -------------------------------------------------------------------------- 
@@ -203,6 +220,7 @@ document.querySelector('#btnScroll').addEventListener('click', scrollTop);
 document.querySelectorAll('header .regions button').forEach(btn => btn.addEventListener('click', (e) => changeRegion(e)));
 document.querySelector('#btnMobile').addEventListener('click', toggleMobile);
 document.querySelector('#filterBtn').addEventListener('click', modalType);
+document.querySelector('#searchInput').addEventListener('input', handleSearch);
 document.querySelector("#closeModalBtn").addEventListener('click', closeModal);
 modal.addEventListener('click', (e) => e.target == modal && closeModal());
 

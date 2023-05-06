@@ -440,7 +440,7 @@ footer .container .links a {
         display: none;
     }
 }
-@media (max-width: 320px) {
+@media (max-width: 325px) {
     html {
         font-size: 54%;
     }
