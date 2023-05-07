@@ -1,7 +1,7 @@
 // -------------------------------------------------------------------------- 
 
 import { getPokemon } from './pokemon.js';
-import { closeMobile, toggleMobile, scrollTop, verifyTop } from './utils.js';
+import { closeMobile, toggleMobile, scrollTop, verifyTop, getPokemonTeam, addPokemon, removePokemon } from './utils.js';
 
 // --------------------------------------------------------------------------
 
@@ -29,6 +29,30 @@ const showPokedex = () => {
 const loadPokedex = async () => {
     pokemonList = await getPokemonList();
     showPokedex();
+}
+
+// -------------------------------------------------------------------------- 
+
+// Pokemon Team
+
+const showTeam = async () => {
+    const team = [];
+    const teamIdx = getPokemonTeam();
+    for(let i = 0; i < 6; i++) {
+        if(!teamIdx[i]) break;
+        team.push(await getPokemon(teamIdx[i]))
+    }
+    pokemonList = team;
+    document.querySelector("#searchInput").value = "";
+    document.querySelector("#searchInput").placeholder = `Search in Team`;
+    currentRegion = "team";
+    closeModal();
+    showPokedex();
+}
+const addPokemonToTeam = (index) => addPokemon(index) ? showTeam() : null;
+const removePokemonFromTeam = (index) => {
+    removePokemon(index);
+    showTeam();
 }
 
 // -------------------------------------------------------------------------- 
@@ -118,6 +142,7 @@ const applyFilters = () => {
 const modal = document.querySelector('.modal');
 const modalContainer = document.querySelector('.modalContainer');
 const modalContent = document.querySelector('.modalContent');
+let catchBtnAction; 
 
 const openModal = () => {
     modal.classList.add('active');
@@ -128,6 +153,8 @@ const closeModal = () => {
     modalContainer.classList.remove('active');
     modalContainer.classList.remove('modalType');
     modalContainer.classList.remove('modalPokemon');
+    document.querySelector('#catchBtn').removeEventListener('click', catchBtnAction);
+    document.querySelector('#catchBtn').style.display = 'none';
     modalContent.innerHTML = '';
 }
 const modalType = () => {
@@ -212,6 +239,19 @@ const modalPokemon = async (e) => {
         </div>
     `;
     modalContainer.classList.add('modalPokemon');
+
+    const team = getPokemonTeam();
+    const catchBtn = document.querySelector('#catchBtn');
+    if(team.length < 6 && !team.includes(pokemon.id)) {
+        catchBtnAction = () => addPokemonToTeam(pokemon.id);
+        catchBtn.innerHTML = `<i class='bx bx-doughnut-chart'></i>`;
+        catchBtn.style.display = 'flex';
+    } else if(team.includes(pokemon.id)) {
+        catchBtnAction = () => removePokemonFromTeam(pokemon.id);
+        catchBtn.innerHTML = `<i class='bx bxs-checkbox-minus'></i>`;
+        catchBtn.style.display = 'flex';
+    }
+    catchBtn.addEventListener('click', catchBtnAction);
 }
 
 // -------------------------------------------------------------------------- 
@@ -224,6 +264,7 @@ document.querySelector('#btnScroll').addEventListener('click', scrollTop);
 document.querySelectorAll('header .regions button').forEach(btn => btn.addEventListener('click', (e) => changeRegion(e)));
 document.querySelector('#btnMobile').addEventListener('click', toggleMobile);
 document.querySelector('#typeBtn').addEventListener('click', modalType);
+document.querySelector('#teamBtn').addEventListener('click', showTeam);
 document.querySelector('#searchInput').addEventListener('input', handleSearch);
 document.querySelector("#closeModalBtn").addEventListener('click', closeModal);
 modal.addEventListener('click', (e) => e.target == modal && closeModal());

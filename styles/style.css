@@ -402,8 +402,15 @@ footer .container .links a {
     width: 100%;
 }
 
-/* Button Close Modal */
-.modal .modalContainer #closeModalBtn {
+/* Modal Buttons */
+.modal .modalContainer .options {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .7rem;
+    width: 100%;
+}
+.modal .modalContainer .options button {
     font-size: 1.8rem;
     padding: .5rem;
     background-color: var(--main);
@@ -413,6 +420,10 @@ footer .container .links a {
     max-width: 80px;
     margin-top: 20px;
 }
+.modal .modalContainer .options #catchBtn {
+    display: none;
+}
+
 
 /* Modal Type Filter */
 .modal .modalContainer.modalType .modalContent {
