@@ -9,13 +9,13 @@ Ao clicar em um Pokemon é possível ver suas estatísticas e adicionar ele a su
 
 ### Tecnologias 
 <div style="display: flex; gap: 5px;">
-    <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML">
-    <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS">
-    <img src="https://img.shields.io/badge/Javascript-F0DB4F?style=for-the-badge&labelColor=black&logo=javascript&logoColor=F0DB4F" alt="JavaScript">
+    <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=E34F26&labelColor=161616" alt="HTML">
+    <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=1572B6&labelColor=161616" alt="CSS">
+    <img src="https://img.shields.io/badge/Javascript-F0DB4F?style=for-the-badge&logo=javascript&logoColor=F0DB4F&labelColor=161616" alt="JavaScript">
 </div>
 
 ### Execução
-Para acessar o projeto basta acessar o link 🔗[Pokedex](https://gabriel-piva.github.io/pokedex) gerado com o [Github Pages](https://pages.github.com/) ou clonar o repositório e abrir o arquivo `index.html` em algum servidor web.
+Para acessar o projeto basta acessar o link [🔗Pokedex](https://gabriel-piva.github.io/pokedex) gerado com o [Github Pages](https://pages.github.com/) ou clonar o repositório e abrir o arquivo `index.html` em algum servidor web.
 
 ### Objetivo
 O projeto tinha como objetivo principal o estudo e prática de HTML, CSS e JavaScript, focando na criação de um layout inteiramente responsivo, na utilização de uma API e no uso do Local Storage, utilizado para salvar a equipe do usuário.
