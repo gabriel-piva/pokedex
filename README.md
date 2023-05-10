@@ -15,7 +15,7 @@ Ao clicar em um Pokemon é possível ver suas estatísticas e adicionar ele a su
 </div>
 
 ### Execução
-Para acessar o projeto basta acessar o link https://gabriel-piva.github.io/pokedex gerado com o [Github Pages](https://pages.github.com/) ou clonar o repositório e abrir o arquivo `index.html` em algum servidor web.
+Para acessar o projeto basta acessar o link [🔗Pokedex](https://gabriel-piva.github.io/pokedex) gerado com o [Github Pages](https://pages.github.com/) ou clonar o repositório e abrir o arquivo `index.html` em algum servidor web.
 
 ### Objetivo
 O projeto tinha como objetivo principal o estudo e prática de HTML, CSS e JavaScript, focando na criação de um layout inteiramente responsivo, na utilização de uma API e no uso do Local Storage, utilizado para salvar a equipe do usuário.
