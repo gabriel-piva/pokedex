@@ -5,7 +5,7 @@ Projeto de uma aplicação web simples que simula uma [Pokedex](https://pokemon.
 É possível ver uma lista de todos os Pokemon separados por região, de Kanto até Paldea. Na listagem, também é possível pesquisar os Pokemon por nome, através de uma barra de busca e filtrar os Pokemon por tipo.
 Ao clicar em um Pokemon é possível ver suas estatísticas e adicionar ele a sua equipe, que pode ter até 6 Pokemon.
 
-<img src="./images/pokedex.png" width=80% alt="Pokedex">
+<img src="./images/pokedex.png" alt="Pokedex">
 
 ### Tecnologias 
 <div style="display: flex; gap: 5px;">
@@ -15,7 +15,7 @@ Ao clicar em um Pokemon é possível ver suas estatísticas e adicionar ele a su
 </div>
 
 ### Execução
-Para acessar o projeto basta acessar o link https://gabriel-piva.github.io/pokedex gerado pelo [Github Pages](https://pages.github.com/) ou clonar o repositório e abrir o arquivo `index.html` em algum servidor web.
+Para acessar o projeto basta acessar o link https://gabriel-piva.github.io/pokedex gerado com o [Github Pages](https://pages.github.com/) ou clonar o repositório e abrir o arquivo `index.html` em algum servidor web.
 
 ### Objetivo
 O projeto tinha como objetivo principal o estudo e prática de HTML, CSS e JavaScript, focando na criação de um layout inteiramente responsivo, na utilização de uma API e no uso do Local Storage, utilizado para salvar a equipe do usuário.
