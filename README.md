@@ -5,7 +5,7 @@ Projeto de uma aplicação web simples que simula uma [Pokedex](https://pokemon.
 É possível ver uma lista de todos os Pokemon separados por região, de Kanto até Paldea. Na listagem, também é possível pesquisar os Pokemon por nome, através de uma barra de busca e filtrar os Pokemon por tipo.
 Ao clicar em um Pokemon é possível ver suas estatísticas e adicionar ele a sua equipe, que pode ter até 6 Pokemon.
 
-<img src="./images/pokedex.png" alt="Pokedex">
+<img src="./images/pokedex.png" width="85%" alt="Pokedex">
 
 ### Tecnologias 
 <div style="display: flex; gap: 5px;">
