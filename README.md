@@ -1,6 +1,6 @@
 ## Pokedex <img src="./images/pokeball.png" width="22px" height="22px">
 
-Projeto de uma aplicação web simples que simula uma Pokedex, utilizando a [PokeAPI](https://pokeapi.co/). 
+Projeto de uma aplicação web simples que simula uma [Pokedex](https://pokemon.fandom.com/pt-br/wiki/Pok%C3%A9dex), utilizando a [PokeAPI](https://pokeapi.co/). 
 
 É possível ver uma lista de todos os Pokemon separados por região, de Kanto até Paldea. Na listagem, também é possível pesquisar os Pokemon por nome, através de uma barra de busca e filtrar os Pokemon por tipo.
 Ao clicar em um Pokemon é possível ver suas estatísticas e adicionar ele a sua equipe, que pode ter até 6 Pokemon.
