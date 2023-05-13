@@ -12,6 +12,22 @@
 
 /*--------------------------------------------------------------------------*/
 
+/* Header & Main Buttons */
+
+#pokedexBtn, #teamBtn {
+    background-color: var(--type);
+    padding: .6rem;
+    gap: .5rem;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    color: var(--white);
+}
+#pokedexBtn i, #teamBtn i{
+    font-size: 1.8rem;
+}
+
+/*--------------------------------------------------------------------------*/
+
 /* Main Boxes */
 
 main .container .boxes {
