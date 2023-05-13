@@ -1,0 +1,151 @@
+/*--------------------------------------------------------------------------*/
+
+/* Pokemon Page CSS */
+
+/*--------------------------------------------------------------------------*/
+
+/* Extra Color */
+
+:root {
+    --type: #ca4242;
+}
+
+/*--------------------------------------------------------------------------*/
+
+/* Main Boxes */
+
+main .container .boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: .8rem;
+    width: 100%;
+}
+main .container .boxes .box {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    min-width: 270px;
+    border-radius: 5px;
+    padding: 2rem;
+    background-color: var(--gray2);
+    box-shadow: 4px 4px 8px var(--gray3);
+    margin-bottom: 20px;
+}
+
+/*--------------------------------------------------------------------------*/
+
+/* Pokemon Box */
+
+main .container .boxes .sprite.box .pokemon {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+main .container .boxes .sprite.box .pokemon img {
+    width: 80%;
+    min-width: 26rem;
+    max-width: 30rem;
+    user-select: none;
+}
+main .container .boxes .sprite.box .pokemon .pokemonId {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 2px 2px 2px var(--type);
+    gap: 5px;
+}
+main .container .boxes .sprite.box .pokemon .pokemonId .number {
+    font-size: 1.8rem;
+}
+main .container .boxes .sprite.box .pokemon .pokemonId img {
+    width: 2rem;
+    min-width: auto;
+}
+main .container .boxes .sprite.box .pokemon .pokemonId .name {
+    text-transform: capitalize;
+    font-size: 1.8rem;
+}
+main .container .boxes .sprite.box .pokemon .types {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 5px;
+    width: 100%;
+}
+main .container .boxes .sprite.box .pokemon .types img {
+    min-width: auto;
+    width: 25%;
+    max-width: 7rem;
+}
+
+/*--------------------------------------------------------------------------*/
+
+/* Stats Box */
+
+main .container .boxes .stats.box .title {
+    align-self: center;
+    font-size: 2rem;
+    text-shadow: 2px 2px 2px var(--type);
+    margin-bottom: 1.8rem;
+}
+main .container .boxes .stats.box .stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: capitalize;
+    gap: 1rem;
+    width: 100%;
+    margin: 1.2rem 0;
+}
+main .container .boxes .stats.box .stat .label {
+    text-align: right;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 2px var(--gray3);
+    min-width: 8.2rem;
+}
+main .container .boxes .stats.box .stat .barMax {
+    height: 2rem;
+    border-radius: 3px;
+    background-color: var(--gray3);
+    box-shadow: 2px 2px 4px black;
+    width: 100%;
+    max-width: 240px;
+}
+main .container .boxes .stats.box .stat .barMax .barValue {
+    width: 0%;
+    height: 2rem;
+    border-radius: 3px;
+    background-color: var(--type);
+}
+main .container .boxes .stats.box .stat .value {
+    min-width: 3rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--type);
+    text-shadow: 2px 2px 2px var(--gray3);
+}
+
+/*--------------------------------------------------------------------------*/
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    main .container .boxes {
+        justify-content: center;
+    }
+    main .container .boxes .box {
+        width: 100%;
+        max-width: 425px;
+    }
+}
+@media (max-width: 320px) {
+    html {
+        font-size: 50%;
+    }
+}
+
+/* -------------------------------------------------------------------------- */

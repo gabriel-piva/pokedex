@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------- 
 
-import { getPokemon } from './pokemon.js';
+import { getPokemon } from './pokeapi.js';
 import { closeMobile, toggleMobile, scrollTop, verifyTop, getPokemonTeam, addPokemon, removePokemon } from './utils.js';
 
 // --------------------------------------------------------------------------
@@ -24,11 +24,16 @@ const showPokedex = () => {
         pokedex.innerHTML = `<img class="loading" src="images/noresults.gif" title='no results'></img>`;
     }
     targetList.forEach(pokemon => pokedex.innerHTML += pokemon.toHTML());
-    document.querySelectorAll(".pokedex .pokemon").forEach(pokemon => pokemon.addEventListener('click', (e) => modalPokemon(e)));
+    document.querySelectorAll(".pokedex .pokemon").forEach(pokemon => pokemon.addEventListener('click', (e) => openPokemon(e)));
 }
 const loadPokedex = async () => {
     pokemonList = await getPokemonList();
     showPokedex();
+}
+const openPokemon = async (e) => {
+    const pokemonEl = e.target.closest('.pokemon');
+    if(!pokemonEl) return;
+    window.location.assign(`../pokemon.html?index=${pokemonEl.dataset.index}`);
 }
 
 // -------------------------------------------------------------------------- 
@@ -152,7 +157,6 @@ const closeModal = () => {
     modal.classList.remove('active');
     modalContainer.classList.remove('active');
     modalContainer.classList.remove('modalType');
-    modalContainer.classList.remove('modalPokemon');
     document.querySelector('#catchBtn').removeEventListener('click', catchBtnAction);
     document.querySelector('#catchBtn').style.display = 'none';
     modalContent.innerHTML = '';
@@ -223,35 +227,6 @@ const modalType = () => {
     `;
     modalContainer.classList.add('modalType');
     document.querySelectorAll(".btnType").forEach(btn => btn.addEventListener("click", (e) => handleTypeChange(e)));
-}
-const modalPokemon = async (e) => {
-    const pokemonEl = e.target.closest('.pokemon');
-    if(!pokemonEl) return;
-    const pokemon = await getPokemon(pokemonEl.dataset.index);
-    openModal();
-    modalContent.innerHTML = pokemon.toHTML();
-    modalContent.innerHTML += `
-        <div class="stats">
-            <div class="title">
-                Stats
-            </div>
-            ${pokemon.getStatusBars()}
-        </div>
-    `;
-    modalContainer.classList.add('modalPokemon');
-
-    const team = getPokemonTeam();
-    const catchBtn = document.querySelector('#catchBtn');
-    if(team.length < 6 && !team.includes(pokemon.id)) {
-        catchBtnAction = () => addPokemonToTeam(pokemon.id);
-        catchBtn.innerHTML = `<i class='bx bx-doughnut-chart'></i>`;
-        catchBtn.style.display = 'flex';
-    } else if(team.includes(pokemon.id)) {
-        catchBtnAction = () => removePokemonFromTeam(pokemon.id);
-        catchBtn.innerHTML = `<i class='bx bxs-checkbox-minus'></i>`;
-        catchBtn.style.display = 'flex';
-    }
-    catchBtn.addEventListener('click', catchBtnAction);
 }
 
 // -------------------------------------------------------------------------- 
