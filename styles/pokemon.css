@@ -47,6 +47,7 @@ main .container .boxes {
 main .container .boxes .box {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 48%;
     min-width: 270px;
     border-radius: 5px;
@@ -112,7 +113,7 @@ main .container .boxes .stats.box .title {
     align-self: center;
     font-size: 2rem;
     text-shadow: 2px 2px 2px var(--type);
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.2rem;
 }
 main .container .boxes .stats.box .stat {
     display: flex;
@@ -121,7 +122,7 @@ main .container .boxes .stats.box .stat {
     text-transform: capitalize;
     gap: 1rem;
     width: 100%;
-    margin: 1.2rem 0;
+    margin: 1rem 0;
 }
 main .container .boxes .stats.box .stat .label {
     text-align: right;
@@ -134,7 +135,7 @@ main .container .boxes .stats.box .stat .barMax {
     height: 2rem;
     border-radius: 3px;
     background-color: var(--gray3);
-    box-shadow: 2px 2px 4px black;
+    box-shadow: 2px 2px 4px #000000;
     width: 100%;
     max-width: 240px;
 }
@@ -150,6 +151,13 @@ main .container .boxes .stats.box .stat .value {
     font-weight: 700;
     color: var(--type);
     text-shadow: 2px 2px 2px var(--gray3);
+}
+main .container .boxes .stats.box .total {
+    align-self: center;
+    font-size: 1.8rem;
+    text-shadow: 2px 2px 2px #000000;
+    color: var(--type);
+    margin-top: 1.2rem;
 }
 
 /*--------------------------------------------------------------------------*/

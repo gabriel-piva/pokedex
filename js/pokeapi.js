@@ -74,6 +74,15 @@ class Pokemon {
             speed: this.stats[5].base_stat
         }
     }
+    getTotalStats() {
+        const values = this.getStatsValues();
+        let total = 0;
+        for (let stat in values) {
+            const value = values[stat];
+            total += value;
+        }
+        return total;
+    }
     getStatsHTML() {
         const values = this.getStatsValues();
         const maxValues = {
@@ -98,6 +107,7 @@ class Pokemon {
             </div>
             `;
         }
+        result += `<span class="total">Total: ${this.getTotalStats()}</span>`;
         return result;
     }
 }
