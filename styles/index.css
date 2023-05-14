@@ -130,6 +130,10 @@ main .container .header button:hover{
     border: 2px solid var(--main);
     transition: all .25s;
 }
+main .container .header button.active{
+    color: var(--main);
+    border: 2px solid var(--main);
+}
 
 /*--------------------------------------------------------------------------*/
 

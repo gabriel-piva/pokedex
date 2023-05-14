@@ -50,6 +50,7 @@ const showTeam = async () => {
     pokemonList = team;
     document.querySelector("#searchInput").value = "";
     document.querySelector("#searchInput").placeholder = `Search in Team`;
+    document.querySelector("#teamBtn").classList.add('active');
     currentRegion = "team";
     closeModal();
     showPokedex();
@@ -80,6 +81,7 @@ const setRegion = () => {
     document.querySelector("#searchInput").placeholder = `Search in ${currentRegion.charAt(0).toUpperCase() + currentRegion.slice(1)}`;
     min = region.min;
     max = region.max;
+    document.querySelector("#teamBtn").classList.remove('active');
 }
 const changeRegion = async (e) => {
     closeMobile();
@@ -105,7 +107,13 @@ const handleTypeChange = (e) => {
         return;
     }
     typeSelected = e.target.dataset.type;
-    typeFilterOn = typeSelected === "all" ? false : true;
+    if(typeSelected === "all") {
+        typeFilterOn = false;
+        document.querySelector('#typeBtn').classList.remove('active')
+    } else {
+        typeFilterOn = true;
+        document.querySelector('#typeBtn').classList.add('active')
+    }
     closeModal();
     showPokedex();
 }

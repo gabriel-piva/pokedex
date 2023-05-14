@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------------
 
 import { getPokemon } from "./pokeapi.js";
-import { addPokemon, removePokemon } from "./utils.js";
+import { getPokemonTeam, addPokemon, removePokemon } from "./utils.js";
 
 // --------------------------------------------------------------------------
 
@@ -22,16 +22,28 @@ const loadPokemon = () => {
     document.querySelector(".sprite").innerHTML += pokemon.toHTML();
     document.querySelector(".stats").innerHTML += pokemon.getStatsHTML();
     document.title += `: ${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
+    const team = getPokemonTeam();
+    let teamAction;
+    if(team.includes(pokemon.id)) {
+        teamAction = removePokemonFromTeam;
+        document.querySelector('#teamBtn').innerHTML = `<i class='bx bxs-x-square'></i>Remove from team`;
+    } else {
+        teamAction = addPokemonToTeam;
+    }
+    document.querySelector('#teamBtn').addEventListener('click', teamAction);
 }
 
 // --------------------------------------------------------------------------
 
-// Add & Remove Pokemon from Team
+// Add Or Remove Pokemon from Team
 
-const addPokemonToTeam = (index) => addPokemon(index) ? showTeam() : null;
-const removePokemonFromTeam = (index) => {
-    removePokemon(index);
-    showTeam();
+const addPokemonToTeam = () => { 
+    addPokemon(pokemon.id);
+    window.location.assign('../index.html');
+}
+const removePokemonFromTeam = () => {
+    removePokemon(pokemon.id);
+    window.location.assign('../index.html');
 }
 
 // --------------------------------------------------------------------------
@@ -39,6 +51,6 @@ const removePokemonFromTeam = (index) => {
 // Events
 
 window.onload = getCurrentPokemon;
-document.querySelector('#pokedexBtn').addEventListener('click', () => window.location.assign('../index.html'))
+document.querySelector('#pokedexBtn').addEventListener('click', () => window.location.assign('../index.html'));
 
 // --------------------------------------------------------------------------
