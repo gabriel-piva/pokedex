@@ -21,12 +21,13 @@ const showPokedex = () => {
     pokedex.innerHTML = "";
     let targetList = applyFilters();
     if(targetList.length <= 0){
-        pokedex.innerHTML = `<img class="loading" src="images/noresults.gif" title='no results'></img>`;
+        pokedex.innerHTML = `<img class="loading" src="images/noresults.gif" title='No results'></img>`;
     }
     targetList.forEach(pokemon => pokedex.innerHTML += pokemon.toHTML());
     document.querySelectorAll(".pokedex .pokemon").forEach(pokemon => pokemon.addEventListener('click', (e) => openPokemon(e)));
+    finishLoading();
 }
-const loadPokedex = async () => {
+const startPokedex = async () => {
     currentRegion = getCurrentRegion();
     if(currentRegion == "team") {
         await showTeam();
@@ -40,10 +41,21 @@ const loadPokedex = async () => {
     pokemonList = await getPokemonList();
     showPokedex();
 }
-const openPokemon = async (e) => {
-    const pokemonEl = e.target.closest('.pokemon');
-    if(!pokemonEl) return;
-    window.location.assign(`../pokemon.html?index=${pokemonEl.dataset.index}`);
+
+// Loading Pokedex
+
+const loading = () => {
+    pokedex.innerHTML = `<img class="loading" src="images/loading.gif" alt=""></img>`;
+    document.querySelector("#searchInput").disabled = true;
+    document.querySelector("#typeBtn").disabled = true;
+    document.querySelector("#teamBtn").disabled = true;
+    document.querySelectorAll('header .regions button').forEach(btn => btn.disabled = true);
+}
+const finishLoading = () => {
+    document.querySelector("#searchInput").disabled = false;
+    document.querySelector("#typeBtn").disabled = false;
+    document.querySelector("#teamBtn").disabled = false;
+    document.querySelectorAll('header .regions button').forEach(btn => btn.disabled = false);
 }
 
 // -------------------------------------------------------------------------- 
@@ -51,6 +63,7 @@ const openPokemon = async (e) => {
 // Pokemon Team
 
 const showTeam = async () => {
+    loading();
     const team = [];
     const teamIdx = getPokemonTeam();
     for(let i = 0; i < 6; i++) {
@@ -65,6 +78,11 @@ const showTeam = async () => {
     setCurrentRegion(currentRegion);
     closeModal();
     showPokedex();
+}
+const openPokemon = async (e) => {
+    const pokemonEl = e.target.closest('.pokemon');
+    if(!pokemonEl) return;
+    window.location.assign(`../pokemon.html?index=${pokemonEl.dataset.index}`);
 }
 
 // -------------------------------------------------------------------------- 
@@ -100,7 +118,7 @@ const changeRegion = async (e) => {
     currentRegion = e.target.dataset.region;
     setCurrentRegion(currentRegion);
     setRegion();
-    pokedex.innerHTML = `<img class="loading" src="images/loading.gif" alt=""></img>`;
+    loading();
     pokemonList = await getPokemonList(); 
     showPokedex();
 }
@@ -245,7 +263,7 @@ const modalType = () => {
 
 // Events
 
-window.onload = loadPokedex;
+window.onload = startPokedex;
 window.onscroll = verifyTop;
 document.querySelector('#btnScroll').addEventListener('click', scrollTop);
 document.querySelectorAll('header .regions button').forEach(btn => btn.addEventListener('click', (e) => changeRegion(e)));
