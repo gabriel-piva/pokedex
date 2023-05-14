@@ -1,6 +1,7 @@
 // --------------------------------------------------------------------------
 
 import { getPokemon } from "./pokeapi.js";
+import { addPokemon, removePokemon } from "./utils.js";
 
 // --------------------------------------------------------------------------
 
@@ -20,6 +21,17 @@ const getCurrentPokemon = async () => {
 const loadPokemon = () => {
     document.querySelector(".sprite").innerHTML += pokemon.toHTML();
     document.querySelector(".stats").innerHTML += pokemon.getStatsHTML();
+    document.title += `: ${pokemon.name.charAt(0).toUpperCase()}${pokemon.name.slice(1)}`;
+}
+
+// --------------------------------------------------------------------------
+
+// Add & Remove Pokemon from Team
+
+const addPokemonToTeam = (index) => addPokemon(index) ? showTeam() : null;
+const removePokemonFromTeam = (index) => {
+    removePokemon(index);
+    showTeam();
 }
 
 // --------------------------------------------------------------------------
@@ -27,5 +39,6 @@ const loadPokemon = () => {
 // Events
 
 window.onload = getCurrentPokemon;
+document.querySelector('#pokedexBtn').addEventListener('click', () => window.location.assign('../index.html'))
 
 // --------------------------------------------------------------------------

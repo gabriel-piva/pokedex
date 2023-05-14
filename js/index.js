@@ -1,7 +1,7 @@
 // -------------------------------------------------------------------------- 
 
 import { getPokemon } from './pokeapi.js';
-import { closeMobile, toggleMobile, scrollTop, verifyTop, getPokemonTeam, addPokemon, removePokemon } from './utils.js';
+import { closeMobile, toggleMobile, scrollTop, verifyTop, getPokemonTeam } from './utils.js';
 
 // --------------------------------------------------------------------------
 
@@ -53,11 +53,6 @@ const showTeam = async () => {
     currentRegion = "team";
     closeModal();
     showPokedex();
-}
-const addPokemonToTeam = (index) => addPokemon(index) ? showTeam() : null;
-const removePokemonFromTeam = (index) => {
-    removePokemon(index);
-    showTeam();
 }
 
 // -------------------------------------------------------------------------- 
@@ -147,7 +142,6 @@ const applyFilters = () => {
 const modal = document.querySelector('.modal');
 const modalContainer = document.querySelector('.modalContainer');
 const modalContent = document.querySelector('.modalContent');
-let catchBtnAction; 
 
 const openModal = () => {
     modal.classList.add('active');
@@ -157,8 +151,6 @@ const closeModal = () => {
     modal.classList.remove('active');
     modalContainer.classList.remove('active');
     modalContainer.classList.remove('modalType');
-    document.querySelector('#catchBtn').removeEventListener('click', catchBtnAction);
-    document.querySelector('#catchBtn').style.display = 'none';
     modalContent.innerHTML = '';
 }
 const modalType = () => {

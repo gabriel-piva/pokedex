@@ -261,26 +261,15 @@ main .container .pokedex .loading {
     width: 100%;
 }
 
-/* Modal Buttons */
-.modal .modalContainer .options {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .7rem;
-    width: 100%;
-}
-.modal .modalContainer .options button {
+/* Modal Button */
+.modal .modalContainer #closeModalBtn {
     font-size: 1.8rem;
     padding: .5rem;
     background-color: var(--main);
     color: var(--white);
     border-radius: 5px;
-    width: 25%;
-    max-width: 80px;
+    width: 8rem;
     margin-top: 20px;
-}
-.modal .modalContainer .options #catchBtn {
-    display: none;
 }
 
 /* Modal Type Filter */
