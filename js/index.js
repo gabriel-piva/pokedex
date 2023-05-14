@@ -1,7 +1,7 @@
 // -------------------------------------------------------------------------- 
 
 import { getPokemon } from './pokeapi.js';
-import { closeMobile, toggleMobile, scrollTop, verifyTop, getPokemonTeam } from './utils.js';
+import { closeMobile, toggleMobile, scrollTop, verifyTop, getPokemonTeam, getCurrentRegion, setCurrentRegion } from './utils.js';
 
 // --------------------------------------------------------------------------
 
@@ -27,6 +27,16 @@ const showPokedex = () => {
     document.querySelectorAll(".pokedex .pokemon").forEach(pokemon => pokemon.addEventListener('click', (e) => openPokemon(e)));
 }
 const loadPokedex = async () => {
+    currentRegion = getCurrentRegion();
+    if(currentRegion == "team") {
+        await showTeam();
+        return;
+    }
+    if(currentRegion == null) {
+        currentRegion = "kanto";
+        setCurrentRegion(currentRegion);
+    } 
+    setRegion();
     pokemonList = await getPokemonList();
     showPokedex();
 }
@@ -52,6 +62,7 @@ const showTeam = async () => {
     document.querySelector("#searchInput").placeholder = `Search in Team`;
     document.querySelector("#teamBtn").classList.add('active');
     currentRegion = "team";
+    setCurrentRegion(currentRegion);
     closeModal();
     showPokedex();
 }
@@ -72,9 +83,9 @@ const regions = {
     paldea: { min: 906, max: 1010 }
 };
 
-let currentRegion = "kanto";
-let min = 1;
-let max = 151;
+let currentRegion;
+let min;
+let max;
 
 const setRegion = () => {
     const region = regions[currentRegion] || regions["kanto"];
@@ -87,6 +98,7 @@ const changeRegion = async (e) => {
     closeMobile();
     if(currentRegion == e.target.dataset.region) return;
     currentRegion = e.target.dataset.region;
+    setCurrentRegion(currentRegion);
     setRegion();
     pokedex.innerHTML = `<img class="loading" src="images/loading.gif" alt=""></img>`;
     pokemonList = await getPokemonList(); 

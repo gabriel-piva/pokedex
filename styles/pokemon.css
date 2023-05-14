@@ -16,6 +16,7 @@
 
 #pokedexBtn, #teamBtn {
     background-color: var(--type);
+    text-shadow: 2px 2px 2px var(--gray3);
     padding: .6rem;
     gap: .5rem;
     font-size: 1.5rem;

@@ -69,7 +69,9 @@ const removePokemon = (pokemonId) => {
     team.splice(index, 1);
     localStorage.setItem('pokemon_team', JSON.stringify(team));
 }
+const getCurrentRegion = () => localStorage.getItem('pokemon_region');
+const setCurrentRegion = (region) => localStorage.setItem('pokemon_region', region);
 
-export { getPokemonTeam, addPokemon, removePokemon }
+export { getPokemonTeam, addPokemon, removePokemon, getCurrentRegion, setCurrentRegion }
 
 // --------------------------------------------------------------------------
