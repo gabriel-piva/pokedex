@@ -23,6 +23,10 @@
     border-radius: 5px;
     color: var(--white);
 }
+#pokedexBtn:hover, #teamBtn:hover {
+    background-color: #ca4242b9;
+    transition: all .3s;
+}
 #pokedexBtn i, #teamBtn i{
     font-size: 1.8rem;
 }
@@ -31,6 +35,36 @@
 }
 #teamBtn:disabled {
     display: none;
+}
+
+/* Next & Previous Buttons */
+
+main .container .options {
+    display: flex;
+    margin-top: 1.5rem;
+    border: 2px solid var(--main);
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px var(--gray3);
+}
+main .container .options button {
+    color: var(--main);
+    text-shadow: 2px 2px 2px var(--gray3);
+    padding: .6rem;
+    gap: .5rem;
+    font-size: 1.5rem;
+}
+main .container .options button i {
+    font-size: 1.7rem;
+}
+main .container .options button:hover {
+    background-color: var(--mainTransl);
+    transition: all .3s;
+}
+main .container .options #nextBtn {
+    border-left: 1px solid var(--main);
+}
+main .container .options #previousBtn {
+    border-right: 1px solid var(--main);
 }
 
 /*--------------------------------------------------------------------------*/

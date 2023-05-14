@@ -40,7 +40,8 @@ const loadPokemon = () => {
         }
     }
     document.querySelector('#teamBtn').addEventListener('click', teamAction);
-    // setTypeColor();
+    document.querySelector('#nextBtn').addEventListener('click', nextPokemon);
+    document.querySelector('#previousBtn').addEventListener('click', previousPokemon);
 }
 
 // --------------------------------------------------------------------------
@@ -61,33 +62,10 @@ const removePokemonFromTeam = () => {
 
 // --------------------------------------------------------------------------
 
-// Type Pokemon Colors
+// Next & Previous Pokemon
 
-const typeColor = (type) => {
-    if(type == "water") return "#5090D6";
-    if(type == "steel") return "#5A8EA2";
-    if(type == "rock") return "#C5B78C";
-    if(type == "psychic") return "#FA7179";
-    if(type == "poison") return "#AA6BC8";
-    if(type == "normal") return "#929DA3";
-    if(type == "ice") return "#73CEC0";
-    if(type == "ground") return "#D97845";
-    if(type == "grass") return "#63BC5A";
-    if(type == "ghost") return "#5269AD";
-    if(type == "flying") return "#8FA9DE";
-    if(type == "fire") return "#FF9D55";
-    if(type == "fighting") return "#CE416B";
-    if(type == "fairy") return "#EC8FE6";
-    if(type == "electric") return "#F4D23C";
-    if(type == "dragon") return "#0B6DC3";
-    if(type == "dark") return "#5A5465";
-    if(type == "bug") return "#91C12F";
-}
-const setTypeColor = () => {
-    const mainType = pokemon.getTypeList()[0];
-    const color = typeColor(mainType);
-    document.documentElement.style.setProperty('--type', color);
-}
+const nextPokemon = () => (pokemon.id < 1010) && window.location.assign(`./pokemon.html?index=${pokemon.id+1}`);
+const previousPokemon = () => (pokemon.id > 1) && window.location.assign(`./pokemon.html?index=${pokemon.id-1}`);
 
 // --------------------------------------------------------------------------
 
