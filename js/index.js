@@ -1,7 +1,8 @@
 // -------------------------------------------------------------------------- 
 
 import { getPokemon } from './pokeapi.js';
-import { closeMobile, toggleMobile, scrollTop, verifyTop, getPokemonTeam, getCurrentRegion, setCurrentRegion } from './utils.js';
+import { closeMobile, toggleMobile, scrollTop, verifyTop } from './utils.js';
+import { getPokemonTeam, getCurrentRegion, setCurrentRegion } from './storage.js';
 
 // --------------------------------------------------------------------------
 

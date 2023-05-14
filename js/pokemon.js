@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------------
 
 import { getPokemon } from "./pokeapi.js";
-import { getPokemonTeam, addPokemon, removePokemon, setCurrentRegion } from "./utils.js";
+import { getPokemonTeam, addPokemon, removePokemon, setCurrentRegion } from "./storage.js";
 
 // --------------------------------------------------------------------------
 
