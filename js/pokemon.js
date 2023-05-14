@@ -1,7 +1,7 @@
 // --------------------------------------------------------------------------
 
 import { getPokemon } from "./pokeapi.js";
-import { getPokemonTeam, addPokemon, removePokemon } from "./utils.js";
+import { getPokemonTeam, addPokemon, removePokemon, setCurrentRegion } from "./utils.js";
 
 // --------------------------------------------------------------------------
 
@@ -18,6 +18,11 @@ const getCurrentPokemon = async () => {
     pokemon = await getPokemon(index);
     loadPokemon();
 }
+
+// --------------------------------------------------------------------------
+
+// Load Pokemon Data
+
 const loadPokemon = () => {
     document.querySelector(".sprite").innerHTML += pokemon.toHTML();
     document.querySelector(".stats").innerHTML += pokemon.getStatsHTML();
@@ -28,22 +33,60 @@ const loadPokemon = () => {
         teamAction = removePokemonFromTeam;
         document.querySelector('#teamBtn').innerHTML = `<i class='bx bxs-x-square'></i>Remove from team`;
     } else {
-        teamAction = addPokemonToTeam;
+        if(team.length < 6) {
+            teamAction = addPokemonToTeam;
+        } else {
+            document.querySelector('#teamBtn').disabled = true;
+        }
     }
     document.querySelector('#teamBtn').addEventListener('click', teamAction);
+    // setTypeColor();
 }
 
 // --------------------------------------------------------------------------
 
 // Add Or Remove Pokemon from Team
 
-const addPokemonToTeam = () => { 
+const addPokemonToTeam = () => {
+    if(getPokemonTeam().length == 6) return;
     addPokemon(pokemon.id);
+    setCurrentRegion("team");
     window.location.assign('../index.html');
 }
 const removePokemonFromTeam = () => {
     removePokemon(pokemon.id);
+    setCurrentRegion("team");
     window.location.assign('../index.html');
+}
+
+// --------------------------------------------------------------------------
+
+// Type Pokemon Colors
+
+const typeColor = (type) => {
+    if(type == "water") return "#5090D6";
+    if(type == "steel") return "#5A8EA2";
+    if(type == "rock") return "#C5B78C";
+    if(type == "psychic") return "#FA7179";
+    if(type == "poison") return "#AA6BC8";
+    if(type == "normal") return "#929DA3";
+    if(type == "ice") return "#73CEC0";
+    if(type == "ground") return "#D97845";
+    if(type == "grass") return "#63BC5A";
+    if(type == "ghost") return "#5269AD";
+    if(type == "flying") return "#8FA9DE";
+    if(type == "fire") return "#FF9D55";
+    if(type == "fighting") return "#CE416B";
+    if(type == "fairy") return "#EC8FE6";
+    if(type == "electric") return "#F4D23C";
+    if(type == "dragon") return "#0B6DC3";
+    if(type == "dark") return "#5A5465";
+    if(type == "bug") return "#91C12F";
+}
+const setTypeColor = () => {
+    const mainType = pokemon.getTypeList()[0];
+    const color = typeColor(mainType);
+    document.documentElement.style.setProperty('--type', color);
 }
 
 // --------------------------------------------------------------------------
