@@ -21,7 +21,7 @@ git clone https://github.com/gabriel-piva/pokedex.git
 ```
 
 ### Objetivo
-O projeto tinha como objetivo principal o estudo e prática de HTML, CSS e JavaScript, focando na criação de um layout responsivo, na utilização de uma API e no uso do Local Storage, utilizado para salvar a equipe do usuário e a sua última região selecionada.
+O projeto tinha como objetivo principal o estudo e prática de HTML, CSS e JavaScript, focando na criação de um layout responsivo, na utilização de uma API, na construção dos filtros de busca e tipo, além da criação da equipe usando Local Storage.
 
 ### Referências 
 A fonte utilizada vem do [Google Fonts](https://fonts.google.com/specimen/Red+Hat+Display), a biblioteca de ícones é a [Boxicons](https://boxicons.com/), o ícone da página vem do [Icon-Icons](https://icon-icons.com/pt/icone/pokemon/6461) e todas as consultas são realizadas na [PokeAPI](https://pokeapi.co/).
