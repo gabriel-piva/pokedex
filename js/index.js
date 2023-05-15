@@ -22,7 +22,7 @@ const showPokedex = () => {
     pokedex.innerHTML = "";
     let targetList = applyFilters();
     if(targetList.length <= 0){
-        pokedex.innerHTML = `<img class="gif" src="images/noresults.gif" title='No results'></img>`;
+        pokedex.innerHTML = `<img class="gif" src="images/noresults.gif" title='No Results Found'>`;
     }
     targetList.forEach(pokemon => pokedex.innerHTML += pokemon.toHTML());
     document.querySelectorAll(".pokedex .pokemon").forEach(pokemon => pokemon.addEventListener('click', (e) => openPokemon(e)));
@@ -46,7 +46,7 @@ const startPokedex = async () => {
 // Loading Pokedex
 
 const loading = () => {
-    pokedex.innerHTML = `<img class="gif" src="images/loading.gif" alt=""></img>`;
+    pokedex.innerHTML = `<img class="gif" src="images/loading.gif" title="Loading">`;
     document.querySelector("#searchInput").disabled = true;
     document.querySelector("#typeBtn").disabled = true;
     document.querySelector("#teamBtn").disabled = true;

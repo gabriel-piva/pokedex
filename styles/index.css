@@ -203,7 +203,7 @@ main .container .pokedex .pokemon .types img {
 
 /* Loading & No Results [Gif] */
 main .container .pokedex .gif {
-    border-radius: 25px;
+    border-radius: 5px;
     box-shadow: 3px 3px 3px var(--gray3);
     width: 25rem;
 }
