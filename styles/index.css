@@ -201,8 +201,8 @@ main .container .pokedex .pokemon .types img {
     width: 26%;
 }
 
-/* Loading */
-main .container .pokedex .loading {
+/* Loading & No Results [Gif] */
+main .container .pokedex .gif {
     border-radius: 25px;
     box-shadow: 3px 3px 3px var(--gray3);
     width: 25rem;
