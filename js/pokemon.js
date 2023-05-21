@@ -12,7 +12,7 @@ const getCurrentPokemon = async () => {
     const url = new URLSearchParams(window.location.search);
     let index = parseInt(url.get('index'));
     if(!index || index < 1 || index > 1010) {
-        window.location.assign('../');
+        window.location.assign('index.html');
         return;
     }
     pokemon = await getPokemon(index);
@@ -52,12 +52,12 @@ const addPokemonToTeam = () => {
     if(getPokemonTeam().length == 6) return;
     addPokemon(pokemon.id);
     setCurrentRegion("team");
-    window.location.assign('../');
+    window.location.assign('index.html');
 }
 const removePokemonFromTeam = () => {
     removePokemon(pokemon.id);
     setCurrentRegion("team");
-    window.location.assign('../');
+    window.location.assign('index.html');
 }
 
 // --------------------------------------------------------------------------
@@ -72,6 +72,6 @@ const previousPokemon = () => (pokemon.id > 1) && window.location.assign(`pokemo
 // Events
 
 window.onload = getCurrentPokemon;
-document.querySelector('#pokedexBtn').addEventListener('click', () => window.location.assign('../'));
+document.querySelector('#pokedexBtn').addEventListener('click', () => window.location.assign('index.html'));
 
 // --------------------------------------------------------------------------
