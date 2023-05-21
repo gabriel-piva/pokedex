@@ -83,7 +83,7 @@ const showTeam = async () => {
 const openPokemon = async (e) => {
     const pokemonEl = e.target.closest('.pokemon');
     if(!pokemonEl) return;
-    window.location.assign(`../pokemon.html?index=${pokemonEl.dataset.index}`);
+    window.location.assign(`pokemon.html?index=${pokemonEl.dataset.index}`);
 }
 
 // -------------------------------------------------------------------------- 

@@ -12,7 +12,7 @@ const getCurrentPokemon = async () => {
     const url = new URLSearchParams(window.location.search);
     let index = parseInt(url.get('index'));
     if(!index || index < 1 || index > 1010) {
-        window.location.assign('../index.html');
+        window.location.assign('../');
         return;
     }
     pokemon = await getPokemon(index);
@@ -52,26 +52,26 @@ const addPokemonToTeam = () => {
     if(getPokemonTeam().length == 6) return;
     addPokemon(pokemon.id);
     setCurrentRegion("team");
-    window.location.assign('../index.html');
+    window.location.assign('../');
 }
 const removePokemonFromTeam = () => {
     removePokemon(pokemon.id);
     setCurrentRegion("team");
-    window.location.assign('../index.html');
+    window.location.assign('../');
 }
 
 // --------------------------------------------------------------------------
 
 // Next & Previous Pokemon
 
-const nextPokemon = () => (pokemon.id < 1010) && window.location.assign(`./pokemon.html?index=${pokemon.id+1}`);
-const previousPokemon = () => (pokemon.id > 1) && window.location.assign(`./pokemon.html?index=${pokemon.id-1}`);
+const nextPokemon = () => (pokemon.id < 1010) && window.location.assign(`pokemon.html?index=${pokemon.id+1}`);
+const previousPokemon = () => (pokemon.id > 1) && window.location.assign(`pokemon.html?index=${pokemon.id-1}`);
 
 // --------------------------------------------------------------------------
 
 // Events
 
 window.onload = getCurrentPokemon;
-document.querySelector('#pokedexBtn').addEventListener('click', () => window.location.assign('../index.html'));
+document.querySelector('#pokedexBtn').addEventListener('click', () => window.location.assign('../'));
 
 // --------------------------------------------------------------------------
