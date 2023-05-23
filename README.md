@@ -15,11 +15,11 @@ Ao clicar em um Pokemon é possível ver sua própria página com suas estatíst
 </div>
 
 ### Execução
-Para executar o projeto bastar clonar o repositório com o link abaixo:
+Para executar o projeto basta clonar o repositório com o link abaixo:
 ```bash
 git clone https://github.com/gabriel-piva/pokedex.git
 ```
-Em seguida, basta navegar até a pasta e abrir o arquivo `index.html` em algum servidor web.
+Em seguida, navegue até a pasta e abra o arquivo `index.html` em algum servidor web.
 
 ### Referências 
 A fonte utilizada vem do [Google Fonts](https://fonts.google.com/specimen/Red+Hat+Display), a biblioteca de ícones é a [Boxicons](https://boxicons.com/), o ícone da página vem do [Icon-Icons](https://icon-icons.com/pt/icone/pokemon/6461) e todas as consultas são realizadas na [PokeAPI](https://pokeapi.co/).
